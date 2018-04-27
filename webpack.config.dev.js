@@ -3,20 +3,30 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 const webpack = require("webpack");
+const pages = require("./config.js");
+// import { pages } from "config.js";
+
 module.exports = {
-  entry: ["./src/app.js"],
+  entry: {
+    main: "./src/app.js",
+    home: "./src/js/home.js"
+  },
   output: {
     //publicPath: "/",
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle[hash:8].js"
+    filename: "[name][hash:8].js"
   },
   devtool: "source-map",
   // devServer: {
   //   contentBase: "images"
   // },
   plugins: [
+    new FaviconsWebpackPlugin({
+      logo: "./src/images/o.png"
+    }),
     new webpack.LoaderOptionsPlugin({
       options: {
         handlebarsLoader: {
@@ -27,49 +37,19 @@ module.exports = {
     new CopyWebpackPlugin([{ from: "src/images", to: "images" }]),
 
     new ExtractTextPlugin("style.css"),
-    // new HtmlWebpackPlugin({
-    //   hash: true,
-    //   filename: "index.html",
-    //   title: "Custom temlate",
-    //   template: __dirname + "/src/html/index.ejs"
-    // }),
-    new HtmlWebpackPlugin({
-      hash: true,
-      title: "Smart Chain Technology - Home",
-      filename: "index.html",
-      inject: "body",
-      meta: {
-        viewport: "width=device-width, initial-scale=1"
-      },
-      template: __dirname + "/src/html/index.handlebars"
-    }),
-    // new HtmlWebpackPlugin({
-    //   hash: true,
-    //   title: "Smart Chain Technology - About",
-    //   filename: "about.html",
-    //   meta: {
-    //     viewport: "width=device-width, initial-scale=1"
-    //   },
-    //   template: __dirname + "/src/html/about.handlebars"
-    // }),
-    // new HtmlWebpackPlugin({
-    //   hash: true,
-    //   title: "Smart Chain Technology - Team",
-    //   filename: "team.html",
-    //   meta: {
-    //     viewport: "width=device-width, initial-scale=1"
-    //   },
-    //   template: __dirname + "/src/html/team.handlebars"
-    // }),
-    // new HtmlWebpackPlugin({
-    //   hash: true,
-    //   title: "Smart Chain Technology - Contact",
-    //   filename: "contact.html",
-    //   meta: {
-    //     viewport: "width=device-width, initial-scale=1"
-    //   },
-    //   template: __dirname + "/src/html/contact.handlebars"
-    // }),
+
+    ...pages.map(
+      page =>
+        new HtmlWebpackPlugin({
+          hash: page.hash,
+          title: page.title,
+          filename: page.filename,
+          excludeChunks: page.excludeChunks,
+          meta: page.meta,
+          template: page.template
+        })
+    ),
+
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackInlineSVGPlugin({
       runPreEmit: true
