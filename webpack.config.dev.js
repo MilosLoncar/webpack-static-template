@@ -20,9 +20,10 @@ module.exports = {
     filename: "[name][hash:8].js"
   },
   devtool: "source-map",
-  // devServer: {
-  //   contentBase: "images"
-  // },
+  devServer: {
+    open: true
+    //   contentBase: "images",
+  },
   plugins: [
     new FaviconsWebpackPlugin({
       logo: "./src/images/o.png"
@@ -34,20 +35,23 @@ module.exports = {
         }
       }
     }),
-    new CopyWebpackPlugin([{ from: "src/images", to: "images" }]),
+    new CopyWebpackPlugin([{
+      from: "src/images",
+      to: "images"
+    }]),
 
     new ExtractTextPlugin("style.css"),
 
     ...pages.map(
       page =>
-        new HtmlWebpackPlugin({
-          hash: page.hash,
-          title: page.title,
-          filename: page.filename,
-          excludeChunks: page.excludeChunks,
-          meta: page.meta,
-          template: page.template
-        })
+      new HtmlWebpackPlugin({
+        hash: page.hash,
+        title: page.title,
+        filename: page.filename,
+        excludeChunks: page.excludeChunks,
+        meta: page.meta,
+        template: page.template
+      })
     ),
 
     new webpack.HotModuleReplacementPlugin(),
@@ -67,16 +71,14 @@ module.exports = {
       // },
       {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-              outputPath: "fonts/", // where the fonts will go
-              publicPath: "./fonts" // override the default path
-            }
+        use: [{
+          loader: "file-loader",
+          options: {
+            name: "[name].[ext]",
+            outputPath: "fonts/", // where the fonts will go
+            publicPath: "./fonts" // override the default path
           }
-        ]
+        }]
       },
       {
         test: /\.handlebars$/,
