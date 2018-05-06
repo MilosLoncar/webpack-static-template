@@ -1,0 +1,4 @@
+header
+    nav
+        each link,index in self.htmlWebpackPlugin.options.header
+            a(href=self.htmlWebpackPlugin.options.pages[index]+".html")= link

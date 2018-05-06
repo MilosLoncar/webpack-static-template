@@ -1,4 +1,10 @@
+@import "reset";
 @import "_vars";
 @import "fonts";
-@import "reset";
+@import "fontface";
 @import "media";
+html {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dev {}
