@@ -12,7 +12,7 @@ pipeline:
     port: 22
     secrets: [ ssh_password , ssh_username ]
     source: dist.tar.gz
-    target: /home/user/goldiam.io
+    target: /home/user/webpack-static-template
   
   extract:
     image: appleboy/drone-ssh
@@ -21,9 +21,30 @@ pipeline:
     command_timeout: 600
     secrets: [ ssh_password , ssh_username ]
     script:
-      - cd /home/user/goldiam.io ;
-       tar -xvzf dist.tar.gz; rm dist.tar.gz ;
-       yarn; yarn build;
-       cp -a /home/user/goldiam.io/dist/. /var/www/html/ ; exit
+      - cd /home/user/webpack-static-template;
+       tar -xvzf dist.tar.gz;
+       rm dist.tar.gz;
+       yarn;
+       yarn build;
+       rm -rf /var/www/html/*;
+       cp -a /home/user/webpack-static-template/dist/. /var/www/html/; exit
     when:
-      branch: dev
+      branch: develop
+
+    extract:
+    image: appleboy/drone-ssh
+    host: 108.61.123.246
+    port: 22
+    command_timeout: 600
+    secrets: [ ssh_password , ssh_username ]
+    script:
+      echo "Aaaa"
+      # - cd /home/user/webpack-static-template;
+      #  tar -xvzf dist.tar.gz;
+      #  rm dist.tar.gz;
+      #  yarn;
+      #  yarn build;
+      #  rm -rf /var/www/html/*;
+      #  cp -a /home/user/webpack-static-template/dist/. /var/www/html/; exit
+    when:
+      branch: master
