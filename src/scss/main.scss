@@ -3,8 +3,23 @@
 @import "fonts";
 @import "fontface";
 @import "media";
+@import "dev";
+@import "header";
 html {
     font-family: 'Montserrat', sans-serif;
 }
 
-.dev {}
+a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {}
+
+.pagecontainer {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 40px auto 40px;
+    grid-template-rows: 30px 50px 30px auto 100px;
+}
