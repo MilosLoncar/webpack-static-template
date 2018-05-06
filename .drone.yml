@@ -13,8 +13,6 @@ pipeline:
     secrets: [ ssh_password , ssh_username ]
     source: dist.tar.gz
     target: /home/user/goldiam.io
-    when:
-      branch: dev
   
   extract:
     image: appleboy/drone-ssh
