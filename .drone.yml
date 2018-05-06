@@ -29,7 +29,7 @@ pipeline:
        rm -rf /var/www/html/*;
        cp -a /home/user/webpack-static-template/dist/. /var/www/html/; exit
     when:
-      branch: develop
+      branch: [develop]
 
     extract:
     image: appleboy/drone-ssh
@@ -47,4 +47,4 @@ pipeline:
       #  rm -rf /var/www/html/*;
       #  cp -a /home/user/webpack-static-template/dist/. /var/www/html/; exit
     when:
-      branch: master
+      branch: [master]
