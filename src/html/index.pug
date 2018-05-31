@@ -1,48 +1,24 @@
-doctype html  
-html(lang='en')  
-  head
-    title= self.htmlWebpackPlugin.options.index.title
+extends layout
+
+block meta
+  title= self.htmlWebpackPlugin.options.index.title
     meta(
-      property="og:title"
-      content=self.htmlWebpackPlugin.options.index.title
-    )
-    //-   meta(
-    //-   property="og:type"
-    //-   content="website"
-    //- )
-    //-   meta(
-    //-   property="og:url"
-    //-   content="content"
-    //- )
-    //-   meta(
-    //-   property="og:image"
-    //-   content=self.htmlWebpackPlugin.options.title
-    //- )
-  body
-    noscript 
-      style.
-        .pagecontainer {
-          display: none;
-        }
-
-        .disabledjs {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          text-align: center;
-        }
-
-        p {
-          margin: 10px 0;
-        }
-      .disabledjs
-        p This website requires js to work correctly.
-        p To enable it follow 
-          a(
-            href="http://enable-javascript.com/"
-            target="_blank" 
-          ) www.enable-javascript.com
-    .pagecontainer
-      include partials/header.pug
-      include partials/dev.pug
+          property="og:title"
+          content=self.htmlWebpackPlugin.options.index.title
+        )
+        //-   meta(
+        //-   property="og:type"
+        //-   content="website"
+        //- )
+        //-   meta(
+        //-   property="og:url"
+        //-   content="content"
+        //- )
+        //-   meta(
+        //-   property="og:image"
+        //-   content=self.htmlWebpackPlugin.options.title
+        //- )
+block content
+  include partials/header.pug
+  include partials/dev.pug
       

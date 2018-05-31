@@ -5,9 +5,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const pug = require("pug-loader");
-
 const webpack = require("webpack");
-
 const pages = require("./config.js");
 
 module.exports = {
@@ -33,16 +31,18 @@ module.exports = {
     new FaviconsWebpackPlugin({
       logo: "./src/images/favicon.png"
     }),
-    new CopyWebpackPlugin([{
-      from: "src/images",
-      to: "images"
-    }]),
+    new CopyWebpackPlugin([
+      {
+        from: "src/images",
+        to: "images"
+      }
+    ]),
     new ExtractTextPlugin("style.css"),
     ...pages.map(
       page =>
-      new HtmlWebpackPlugin({
-        ...page
-      })
+        new HtmlWebpackPlugin({
+          ...page
+        })
     ),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackInlineSVGPlugin({
@@ -50,21 +50,24 @@ module.exports = {
     })
   ],
   module: {
-    rules: [{
+    rules: [
+      {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        use: [{
-          loader: "file-loader",
-          options: {
-            name: "[name].[ext]",
-            outputPath: "fonts/", // where the fonts will go
-            publicPath: "./fonts" // override the default path
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "fonts/", // where the fonts will go
+              publicPath: "./fonts" // override the default path
+            }
           }
-        }]
+        ]
       },
       {
         test: /.pug$/,
         use: {
-          loader: 'pug-loader',
+          loader: "pug-loader",
           options: {
             self: true
           }

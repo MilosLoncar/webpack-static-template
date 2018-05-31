@@ -1,0 +1,32 @@
+doctype html  
+html(lang='en')  
+  head
+    block meta
+  body
+    noscript 
+      style.
+        .pagecontainer {
+          display: none;
+        }
+
+        .disabledjs {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+        }
+
+        p {
+          margin: 10px 0;
+        }
+      .disabledjs
+        p This website requires js to work correctly.
+        p To enable it follow 
+          a(
+            href="http://enable-javascript.com/"
+            target="_blank" 
+          ) www.enable-javascript.com
+    .pagecontainer
+        block content
+
+    

@@ -1,11 +1,11 @@
 {
-    "header": ["Home"],
-    "page": ["index"],
-    "meta": {
-        "viewport": "width=device-width, initial-scale=1"
-    },
-    "index": {
-        "title": "Home Page",
-        "excludeChunks": []
-    }
+  "header": ["Home"],
+  "page": ["index"],
+  "meta": {
+    "viewport": "width=device-width, initial-scale=1"
+  },
+  "index": {
+    "title": "Home Page",
+    "excludeChunks": []
+  }
 }
