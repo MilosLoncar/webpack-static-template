@@ -1,9 +1,10 @@
 header
-    nav
-        a(  class="logo"
-            href="/"
-        )
-            img(inline
-            src="./src/images/logo.svg")
-        each link,index in self.htmlWebpackPlugin.options.header
-            a(href=self.htmlWebpackPlugin.options.pages[index]+".html")= link
+    .container
+        .header--nav
+            a(href="/")
+                img(inline src="./src/images/logo.svg")
+            .header--links
+                a Elements
+                a Headings
+                a Gallery
+                a Form

@@ -1,16 +1,23 @@
 header {
-  height: 100px;
-  nav {
+  height: 60px;
+  background: black;
+  color: white;
+
+  .container {
     height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    .logo {
+    .header--nav {
       height: 100%;
+      @include flex(row, space-between, center);
       svg {
-        height: 100%;
-        fill: blueviolet;
+        min-height: 25px;
+        height: 25px;
+        fill: white;
+      }
+      .header--links {
+        a {
+          text-transform: capitalize !important;
+          margin-left: 40px;
+        }
       }
     }
   }
